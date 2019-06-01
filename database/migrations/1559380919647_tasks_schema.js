@@ -8,6 +8,8 @@ class TasksSchema extends Schema {
     this.create('tasks', (table) => {
       table.increments()
       table.string('title')
+      table.boolean('is_completed').defaultTo(true)
+      table.text('detail').nullable()
       table.timestamps()
     })
   }
@@ -18,3 +20,4 @@ class TasksSchema extends Schema {
 }
 
 module.exports = TasksSchema
+
