@@ -8,15 +8,24 @@
     <form action="/tasks" method="POST">
         {{ csrfField() }}
 
-        <div class="field has-addons">
-        <div class="control is-expanded">
-            <input class="input" type="text" name="title" value="{{ old('title', '') }}" placeholder="Task title">
+        <div class="field">
+            <label for="task-title" class="label">Task Title</label>
+            <div class="control is-expanded">
+                <input id="task-title" class="input" type="text" name="title" value="{{ old('title', '') }}" placeholder="Task title">
+            </div>
         </div>
-        <div class="control">
-            <button type="submit" class="button is-primary">
-                Add Task
-            </button>
+        <div class="field">
+            <label for="task-detail" class="label">Task Title</label>
+            <div class="control is-expanded">
+                <textarea id="task-detail" class="textarea" name="detail" placeholder="Task detail">{{ old('detail', '') }}</textarea>
+            </div>
         </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">
+                    Add Task
+                </button>
+            </div>
         </div>
 
         {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('title'), hasErrorFor('title')) }}
