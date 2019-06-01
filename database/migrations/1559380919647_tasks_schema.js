@@ -7,10 +7,11 @@ class TasksSchema extends Schema {
   up () {
     this.create('tasks', (table) => {
       table.increments()
-      table.string('title')
-      table.boolean('is_completed').defaultTo(true)
+      table.string('title').notNullable()
+      table.boolean('is_completed').notNullable().defaultTo(false)
       table.text('detail').nullable()
       table.timestamps()
+      table.timestamp('deleted_at').nullable()
     })
   }
 
