@@ -21,6 +21,10 @@ Route.get('tasks', 'TaskController.index')
 Route.post('tasks', 'TaskController.store')
 Route.delete('tasks/:id', 'TaskController.destroy')
 
+Route.post("post-sample", 'Api/SampleController.store')
+     .prefix('api')
+
+
 
 
 // This has to be the last route
