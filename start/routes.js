@@ -21,6 +21,12 @@ Route.get('tasks', 'TaskController.index')
 Route.post('tasks', 'TaskController.store')
 Route.delete('tasks/:id', 'TaskController.destroy')
 
+Route.get('login', ({ view }) => view.render('users.login'))
+Route.post('login', 'UserController.login')
+     .middleware('guest')
+Route.get('profile', 'UserController.profile')
+     .middleware('auth')
+
 Route.post("post-sample", 'Api/SampleController.store')
      .prefix('api')
 

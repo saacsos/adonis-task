@@ -1,0 +1,37 @@
+@layout('master')
+
+@section('content')
+<div class="box">
+    <h2 class="title">Login</h2>
+
+    <form action="/login" method="POST">
+        {{ csrfField() }}
+
+        <div class="field">
+            <label for="login-email" class="label">Email</label>
+            <div class="control is-expanded">
+                <input id="login-email" class="input {{ elIf('is-danger', getErrorFor('email'), hasErrorFor('email')) }}" 
+                        type="text" name="email" value="{{ old('email', '') }}" placeholder="Member Email">
+            </div>
+
+            {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('email'), hasErrorFor('email')) }}
+        </div>
+        <div class="field">
+            <label for="login-password" class="label">Password</label>
+            <div class="control is-expanded">
+                <input id="login-password" class="input {{ elIf('is-danger', getErrorFor('password'), hasErrorFor('password')) }}" 
+                        type="text" name="password" placeholder="Task detail">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">
+                    Click to Login
+                </button>
+            </div>
+        </div>
+
+        
+    </form>
+</div>
+@endsection
