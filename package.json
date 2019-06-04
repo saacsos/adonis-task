@@ -36,6 +36,8 @@
     "mysql": "^2.17.1"
   },
   "devDependencies": {
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10"
   },
   "autoload": {
