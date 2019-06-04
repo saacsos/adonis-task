@@ -14,3 +14,7 @@ database/development.sqlite
 # VSCode & Webstorm history directories
 .history
 .idea
+
+# laravel-mix files
+public/mix-manifest.json
+public/js/main.js
