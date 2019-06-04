@@ -20,3 +20,9 @@ Route.on('/').render('welcome')
 Route.get('tasks', 'TaskController.index')
 Route.post('tasks', 'TaskController.store')
 Route.delete('tasks/:id', 'TaskController.destroy')
+
+
+
+// This has to be the last route
+// asterisk means everything that has not been declared before
+Route.any('*', ({ view }) => view.render('vueapp'))
