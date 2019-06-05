@@ -1,0 +1,56 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a href="{{ route('/') }}" class="navbar-item">
+            Home
+        </a>
+
+        <a class="navbar-burger burger" role="button" aria-label="menu"
+            aria-expanded="false" data-target="main-menu-navbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    
+
+    <div id="main-menu-navbar" class="navbar-menu">
+        <div class="navbar-start">
+            <a href="{{ route('/tasks') }}" class="navbar-item">
+                Your Task
+            </a>
+
+            
+        </div>
+
+        <div class="navbar-end">
+            @loggedIn
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        {{ auth.user.email }}
+                    </a>
+    
+                    <div class="navbar-dropdown">
+                        <a href="{{ route('/profile') }}" class="navbar-item">
+                            Profile
+                        </a>
+                        <a href="{{ route('/logout') }}" class="navbar-item">
+                            Log out
+                        </a>
+                    </div>
+                </div>
+            @else
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a href="{{ route('/register') }}" class="button is-primary">
+                            <strong>Register</strong>
+                        </a>
+                        <a href="{{ route('/login') }}" class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            @endloggedIn            
+        </div>
+    </div>
+</nav>

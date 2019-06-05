@@ -1,0 +1,49 @@
+@layout('master')
+
+@section('content')
+<div class="box">
+    <div class="title">Registeration</div>
+
+    <form action="/register" method="POST">
+        {{ csrfField() }}
+
+        <div class="field">
+            <label for="register-email" class="label">Email</label>
+            <div class="control is-expanded">
+                <input id="register-email" class="input {{ elIf('is-danger', getErrorFor('email'), hasErrorFor('email')) }}" 
+                        type="email" name="email" value="{{ old('email', '') }}" placeholder="Email Address">
+            </div>
+
+            {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('email'), hasErrorFor('email')) }}
+        </div>
+        <div class="field">
+            <label for="register-password" class="label">Password</label>
+            <div class="control is-expanded">
+                <input id="register-password" type="password" class="input {{ elIf('is-danger', getErrorFor('password'), hasErrorFor('password')) }}" 
+                        name="password">
+            </div>
+
+            {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('password'), hasErrorFor('password')) }}
+        </div>
+
+        <div class="field">
+            <label for="register-password-confirm" class="label">Password Confirmation</label>
+            <div class="control is-expanded">
+                <input id="register-password-confirm" type="password" class="input {{ elIf('is-danger', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}" 
+                        name="password_confirmation">
+            </div>
+
+            {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">
+                    Register
+                </button>
+            </div>
+        </div>
+
+        
+    </form>
+</div>
+@endsection

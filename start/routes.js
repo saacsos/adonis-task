@@ -21,10 +21,16 @@ Route.get('tasks', 'TaskController.index')
 Route.post('tasks', 'TaskController.store')
 Route.delete('tasks/:id', 'TaskController.destroy')
 
+Route.get('register', ({ view }) => view.render('users.register'))
+Route.post('register', 'UserController.register')
+     .middleware('guest')
+
 Route.get('login', ({ view }) => view.render('users.login'))
 Route.post('login', 'UserController.login')
      .middleware('guest')
 Route.get('profile', 'UserController.profile')
+     .middleware('auth')
+Route.get('logout', 'UserController.logout')
      .middleware('auth')
 
 Route.post("post-sample", 'Api/SampleController.store')
