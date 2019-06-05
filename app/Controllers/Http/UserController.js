@@ -8,8 +8,13 @@ class UserController {
         return response.redirect('/profile')
     }
 
-    async profile ({ auth, view }) {
-        return view.render('users.index')
+    async profile ({ view }) {
+        return view.render('users.profile')
+    }
+
+    async logout ({ auth, response }) {
+        await auth.logout()
+        return response.redirect('/')
     }
 }
 
