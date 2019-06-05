@@ -9,6 +9,10 @@ class Task extends Model {
 
         this.addTrait('@provider:Lucid/SoftDeletes')
     }
+
+    user () {
+        return this.belongsTo('App/Models/User')
+    }
 }
 
 module.exports = Task
