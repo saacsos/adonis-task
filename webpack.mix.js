@@ -15,6 +15,7 @@ mix.version() // enable versioning (Cache Busting)
 
 mix.setPublicPath('public')
     .js('resources/assets/js/main.js', 'public/js')
+    .sass('resources/assets/sass/app.sass', 'public/css')
 
 mix.webpackConfig( {
     resolve: {
