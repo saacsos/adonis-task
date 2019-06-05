@@ -40,7 +40,8 @@ Route.get('logout', 'UserController.logout')
 Route.post("post-sample", 'Api/SampleController.store')
      .prefix('api')
 
-
+Route.get('file/upload', 'FileUploadController.create')
+Route.post('file/upload', 'FileUploadController.store')
 
 
 // This has to be the last route
