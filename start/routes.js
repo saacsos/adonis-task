@@ -17,9 +17,13 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
-Route.get('tasks', 'TaskController.index')
-Route.post('tasks', 'TaskController.store')
-Route.delete('tasks/:id', 'TaskController.destroy')
+
+Route.group(() => {
+     Route.get('tasks', 'TaskController.index')
+     Route.post('tasks', 'TaskController.store')
+     Route.delete('tasks/:id', 'TaskController.destroy')
+}).middleware(['auth'])
+
 
 Route.get('register', ({ view }) => view.render('users.register'))
 Route.post('register', 'UserController.register')
