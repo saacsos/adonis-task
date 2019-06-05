@@ -18,3 +18,4 @@ database/development.sqlite
 # laravel-mix files
 public/mix-manifest.json
 public/js/main.js
+public/css/app.css
