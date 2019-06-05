@@ -18,7 +18,9 @@
             {{ elIf('<p class="help is-danger">$self</p>', getErrorFor('title'), hasErrorFor('title')) }}
         </div>
         <div class="field">
-            <label for="task-detail" class="label">Task Detail</label>
+            <label for="task-detail" class="label">
+                    Task Detail <span class="has-text-grey-light is-size-7 is-italic">(Optional)</span>
+            </label>
             <div class="control is-expanded">
                 <textarea id="task-detail" class="textarea" name="detail" placeholder="Task detail">{{ old('detail', '') }}</textarea>
             </div>
@@ -35,12 +37,7 @@
     </form>
 </div>
 
-@if(old('notification'))
-    <div class="notification is-success">
-        <button class="delete"></button>
-        {{ old('notification') }}
-    </div>
-@endif
+@include('partials.app.notification')
 
 <div class="box">
     <h1 class="title">Task List</h1>
