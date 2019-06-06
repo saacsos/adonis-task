@@ -22,7 +22,8 @@ const providers = [
   '@radmen/adonis-lucid-soft-deletes/providers/SoftDeletesProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/auth/providers/AuthProvider',
-  '@adonisjs/persona/providers/PersonaProvider'
+  '@adonisjs/persona/providers/PersonaProvider',
+  '@adonisjs/drive/providers/DriveProvider'
 ]
 
 /*
