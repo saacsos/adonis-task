@@ -40,8 +40,11 @@ Route.get('logout', 'UserController.logout')
 Route.post("post-sample", 'Api/SampleController.store')
      .prefix('api')
 
-Route.get('file/upload', 'FileUploadController.create')
-Route.post('file/upload', 'FileUploadController.store')
+Route.get('files/:path/:name', 'FileUploadController.show').as('files')
+Route.get('file-upload', 'FileUploadController.create')
+Route.post('file-upload', 'FileUploadController.store')
+Route.get('files', 'FileUploadController.index')
+
 
 
 // This has to be the last route

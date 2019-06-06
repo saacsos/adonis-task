@@ -1,9 +1,37 @@
 'use strict'
 
 const Helpers = use('Helpers')
+const Drive = use('Drive')
 const { validate } = use('Validator')
+const FileStorage = use('App/Models/FileStorage')
 
 class FileUploadController {
+
+    async index ({ view }) {
+        const files = await FileStorage.all()
+        return view.render('fileupload.index', { files: files.toJSON() })
+    }
+
+    async show ({ params, response }) {
+        const name = params.path + '/' + params.name
+        const found = await Drive.exists(name)
+        if (!found) {
+            return response.notFound()
+        }
+        const fs = await FileStorage.query()
+                            .where('storage_path', params.path)
+                            .where('name', params.name)
+                            .fetch()
+        const fs0 = fs.toJSON()[0]
+
+        if (fs === undefined) {
+            return response.notFound()
+        }
+
+        const file = await Drive.get(name)
+        response.header('Content-Type', fs0.type)
+        response.send(file)
+    }
 
     async create ({ view }) {
         return view.render('fileupload.create')
@@ -21,12 +49,18 @@ class FileUploadController {
             return response.redirect('back')
         }
 
-        await uploadedFile.move(Helpers.tmpPath('uploads'), {
-            name: 'custom-name.jpg',
-            overwrite: true
-        })
+        const clientName = uploadedFile.clientName  // ex: filename.jpg
+        const extname = uploadedFile.extname        // ex: jpg
+        const size = uploadedFile.size
+        const type = uploadedFile.type
+        const subtype = uploadedFile.subtype
+        const storagePath = 'uploads'
+        const name = `${new Date().getTime()}.${extname}`
 
-        
+        await uploadedFile.move(Helpers.appRoot() + '/storage/' + storagePath, {
+            name: name,
+            overwrite: true
+        })        
 
         if (!uploadedFile.moved()) {
             session.withErrors(uploadedFile.error())
@@ -35,7 +69,17 @@ class FileUploadController {
             return response.redirect('back')
         }
 
-        return 'File moved'
+        const fs = new FileStorage()
+        fs.client_name = clientName
+        fs.storage_path = storagePath
+        fs.name = name
+        fs.type = type + '/' + subtype
+        fs.extension = extname
+        fs.size= size   
+
+        await fs.save()
+
+        return response.redirect('/files')
 
     }
 }
