@@ -19,3 +19,6 @@ database/development.sqlite
 public/mix-manifest.json
 public/js/main.js
 public/css/app.css
+
+# storage folder
+storage
