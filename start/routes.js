@@ -43,6 +43,7 @@ Route.post("post-sample", 'Api/SampleController.store')
 Route.get('files/:path/:name', 'FileUploadController.show').as('files')
 Route.get('file-upload', 'FileUploadController.create')
 Route.post('file-upload', 'FileUploadController.store')
+Route.delete('file/remove/:id', 'FileUploadController.destroy').as('file-remove')
 Route.get('files', 'FileUploadController.index')
 
 

@@ -82,6 +82,20 @@ class FileUploadController {
         return response.redirect('/files')
 
     }
+
+    async destroy ( { params, session, response } ) {
+        const fs = await FileStorage.find(params.id)
+
+        const name = fs.name
+        await fs.delete()  // delete from table
+        // console.log(fs.toJSON());
+
+
+      
+        session.flash({ notification: `File "${name}" deleted!` })
+      
+        return response.redirect('/files')
+    }
 }
 
 module.exports = FileUploadController
